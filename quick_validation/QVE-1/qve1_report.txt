@@ -1,0 +1,41 @@
+============================================================
+STATISTICAL ANALYSIS
+============================================================
+
+--- Metric: L14_twonn ---
+  A:Repeat    : n= 8, median=   6.34, mean=   6.27, std=  0.47
+  B:Halluc    : n= 9, median=   9.34, mean=   8.99, std=  2.05
+  C:Effect    : n=10, median=   4.21, mean=   4.52, std=  1.25
+  D:Gibber    : n=10, median=  28.54, mean=  28.32, std=  1.58
+  Kruskal-Wallis: H=30.145, p=0.0000
+  >>> SIGNIFICANT (p<0.05): groups are distinguishable!
+  Pairwise Mann-Whitney U:
+    A:Repeat     vs B:Halluc    : U=7.0, p=0.0037 **
+    A:Repeat     vs C:Effect    : U=69.0, p=0.0085 **
+    A:Repeat     vs D:Gibber    : U=0.0, p=0.0000 ***
+    B:Halluc     vs C:Effect    : U=86.0, p=0.0009 ***
+    B:Halluc     vs D:Gibber    : U=0.0, p=0.0003 ***
+    C:Effect     vs D:Gibber    : U=0.0, p=0.0002 ***
+
+--- Metric: lz_ratio ---
+  A:Repeat    : n=10, median=   0.90, mean=   0.87, std=  0.12
+  B:Halluc    : n=10, median=   0.65, mean=   0.67, std=  0.19
+  C:Effect    : n=10, median=   0.52, mean=   0.52, std=  0.03
+  D:Gibber    : n=10, median=   0.82, mean=   0.82, std=  0.02
+  Kruskal-Wallis: H=26.309, p=0.0000
+  >>> SIGNIFICANT (p<0.05): groups are distinguishable!
+  Pairwise Mann-Whitney U:
+    A:Repeat     vs B:Halluc    : U=85.0, p=0.0090 **
+    A:Repeat     vs C:Effect    : U=100.0, p=0.0002 ***
+    A:Repeat     vs D:Gibber    : U=70.0, p=0.1399 ns
+    B:Halluc     vs C:Effect    : U=86.0, p=0.0073 **
+    B:Halluc     vs D:Gibber    : U=10.0, p=0.0028 **
+    C:Effect     vs D:Gibber    : U=0.0, p=0.0002 ***
+
+============================================================
+VERDICT
+============================================================
+Primary metric: L14_twonn
+Medians: A_repetition=6.34, B_hallucination=9.34, C_effective=4.21, D_gibberish=28.54
+
+  >>> GO: At least 3 categories separable with significance
