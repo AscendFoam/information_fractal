@@ -1,0 +1,47 @@
+============================================================
+STATISTICAL ANALYSIS
+============================================================
+
+--- Metric: L12_twonn ---
+  A:Repeat    : n= 9, median=   7.52, mean=   7.30, std=  1.22
+  B:Halluc    : n=10, median=   7.52, mean=   7.81, std=  0.62
+  C:Effect    : n=10, median=   7.31, mean=   7.24, std=  0.76
+  D:Gibber    : n=10, median=  29.10, mean=  29.37, std=  2.70
+  Kruskal-Wallis: H=22.842, p=0.0000
+  >>> SIGNIFICANT (p<0.05): groups are distinguishable!
+  Pairwise Mann-Whitney U:
+    A:Repeat     vs B:Halluc    : U=36.0, p=0.4877 ns
+    A:Repeat     vs C:Effect    : U=51.0, p=0.6534 ns
+    A:Repeat     vs D:Gibber    : U=0.0, p=0.0003 ***
+    B:Halluc     vs C:Effect    : U=69.0, p=0.1620 ns
+    B:Halluc     vs D:Gibber    : U=0.0, p=0.0002 ***
+    C:Effect     vs D:Gibber    : U=0.0, p=0.0002 ***
+
+--- Metric: lz_ratio ---
+  A:Repeat    : n=10, median=   0.75, mean=   0.77, std=  0.24
+  B:Halluc    : n=10, median=   0.56, mean=   0.57, std=  0.02
+  C:Effect    : n=10, median=   0.54, mean=   0.54, std=  0.04
+  D:Gibber    : n=10, median=   0.81, mean=   0.81, std=  0.02
+  Kruskal-Wallis: H=21.347, p=0.0001
+  >>> SIGNIFICANT (p<0.05): groups are distinguishable!
+  Pairwise Mann-Whitney U:
+    A:Repeat     vs B:Halluc    : U=75.0, p=0.0640 ns
+    A:Repeat     vs C:Effect    : U=84.0, p=0.0113 *
+    A:Repeat     vs D:Gibber    : U=36.0, p=0.3075 ns
+    B:Halluc     vs C:Effect    : U=73.0, p=0.0890 ns
+    B:Halluc     vs D:Gibber    : U=0.0, p=0.0002 ***
+    C:Effect     vs D:Gibber    : U=0.0, p=0.0002 ***
+
+============================================================
+VERDICT
+============================================================
+Primary metric: L12_twonn
+Medians: A_repetition=7.52, B_hallucination=7.52, C_effective=7.31, D_gibberish=29.10
+
+  >>> PIVOT: Groups differ significantly but staircase order not as expected
+
+  Suggested next steps:
+  - Try different layers (early/late)
+  - Try PCA preprocessing before dimension estimation
+  - Try longer generation (512+ tokens)
+  - Check if layer-wise gradient (dID/dLayer) separates better

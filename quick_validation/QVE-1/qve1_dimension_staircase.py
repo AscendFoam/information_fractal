@@ -32,7 +32,8 @@ from skdim.id import TwoNN, MLE
 # 配置
 # ============================================================
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "Qwen2.5-1.5B-Instruct")
+MODEL_NAME = "Qwen3.5-2B-Base"
+MODEL_PATH = os.path.join(PROJECT_ROOT, "models", MODEL_NAME)
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -475,7 +476,7 @@ def plot_boxplots(results, target_layers, output_dir):
 
     fig.suptitle("QVE-1: Dimension Staircase Test (Qwen2.5-1.5B-Instruct)", fontsize=14)
     plt.tight_layout()
-    path = os.path.join(output_dir, "qve1_boxplots.png")
+    path = os.path.join(output_dir, f"qve1_boxplots_{MODEL_NAME}.png")
     plt.savefig(path, dpi=150, bbox_inches="tight")
     print(f"  Boxplot saved to {path}")
     plt.close()
@@ -510,7 +511,7 @@ def plot_layer_comparison(results, target_layers, output_dir):
     ax.legend(fontsize=11)
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
-    path = os.path.join(output_dir, "qve1_layer_comparison.png")
+    path = os.path.join(output_dir, f"qve1_layer_comparison_{MODEL_NAME}.png")
     plt.savefig(path, dpi=150, bbox_inches="tight")
     print(f"  Layer comparison saved to {path}")
     plt.close()
@@ -705,13 +706,13 @@ def main():
              "n_tokens": s["n_gen_tokens"]}
             for s in samples
         ]
-    log_path = os.path.join(OUTPUT_DIR, "qve1_samples.json")
+    log_path = os.path.join(OUTPUT_DIR, f"qve1_samples_{MODEL_NAME}.json")
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(samples_log, f, ensure_ascii=False, indent=2)
     print(f"  Samples log saved to {log_path}")
 
     # 保存维度结果
-    results_path = os.path.join(OUTPUT_DIR, "qve1_results.json")
+    results_path = os.path.join(OUTPUT_DIR, f"qve1_results_{MODEL_NAME}.json")
     with open(results_path, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     print(f"  Results saved to {results_path}")
@@ -732,7 +733,7 @@ def main():
 
     # 保存完整报告
     full_report = stat_report + "\n" + verdict_report
-    report_path = os.path.join(OUTPUT_DIR, "qve1_report.txt")
+    report_path = os.path.join(OUTPUT_DIR, f"qve1_report_{MODEL_NAME}.txt")
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(full_report)
     print(f"\n  Full report saved to {report_path}")
